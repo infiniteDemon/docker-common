@@ -1,0 +1,5 @@
+[Credentials]
+language=CH
+accessKeyID=test
+accessKeySecret=test
+endpoint=oss-cn-shanghai.aliyuncs.com

@@ -1,0 +1,12 @@
+version: "3.1"
+services:
+  redis:
+    command: ["--appendonly yes", "--requirepass test123!@#"]
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis:/data
+      - /etc/localtime:/etc/localtime:ro

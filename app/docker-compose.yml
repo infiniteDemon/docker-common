@@ -1,0 +1,75 @@
+version: "3.1"
+services:
+  admin:
+    container_name: nginx
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - mysql
+      - redis
+      - app
+    volumes:
+      - ./nginx:/etc/nginx
+      - ./html:/usr/share/nginx/html
+      - /etc/localtime:/etc/localtime:ro
+    links:
+      - app
+    networks:
+      - service-network
+  redis:
+    command: [ "--requirepass 'test123!@#'" ]
+    container_name: redis
+    image: redis
+    restart: always
+    expose:
+      - "6379"
+    volumes:
+      - ./redis:/data
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - service-network
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    expose:
+      - "3306"
+    volumes:
+      - ./mysql/conf:/etc/mysql
+      - ./mysql/logs:/var/log/mysql
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d/
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - service-network
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_secret
+    secrets:
+      - mysql_secret
+  app:
+    command: ["-c","/conf/conf.ini"]
+    container_name: app
+    image: app:v1
+    restart: always
+    expose:
+      - "8080"
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ./conf:/conf
+      - ./logs:/logs
+      - ./temp:/temp
+      - ./static:/static
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - service-network
+networks:
+  service-network:
+    external: false
+secrets:
+  mysql_secret:
+    file: ./mysql/secret/mysql
