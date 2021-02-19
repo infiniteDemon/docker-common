@@ -25,5 +25,5 @@ services:
     secrets:
       - pwd_secret
 secrets:
-  mysql_secret:
+  pwd_secret:
     file: /secret/pwd
