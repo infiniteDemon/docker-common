@@ -1,0 +1,10 @@
+version: "3.1"
+services:
+  frpc:
+    command: ["-c", "/etc/frp/frpc.toml"]
+    container_name: frpc
+    image: registry.cn-hangzhou.aliyuncs.com/infinitedemon/frpc
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./conf.toml:/etc/frp/frpc.toml

@@ -1,0 +1,11 @@
+services:
+  ssh-agent:
+    container_name: agent1
+    image: jenkins/ssh-agent
+    restart: always
+    ports:
+      - "2022:22"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      JENKINS_AGENT_SSH_PUBKEY: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCtpNEJ2YBR/GTN8Ep0J8ka34Xc+2Y+l0zXp9bmGramMJxfZpGk6QJrFbq1gye5NtPEVib1/uKy8VL6Adf8dPGIIOpvs2RA1m5MQ3C5gHHi9nHfg1vh1+eLGWP2AgQEvW4S6HWZesxlHoUrOSYdBZjFckVlsBKzs53x7U8oFqKT4SRpfs68t2XF32lth9KMtmZIy2pTJYJYtX4KuldW2VfZy3/kMMIoKVv4tM1wylvhmg7Z7b3p/xICJ49SRMS0PDaktEJr4NSruVNIn1b9mxjpcscWs/74HG7I7o3g6FEKQ4hz3iJM2g1zTOVrRtXKrM9ni03SmvM2wELRX/piGFSJtW0HB0Dm6UsOjq2arkuA8P2VR6v0NwXVumEsof2vLdmLGKHX2uDfPF9616cdGHVAR1QhejVRWI7GTLwOZKciEuXWqjQOJTGGUlEya8Z7BhMGRBpizJ6LB4rYX/Oogel6xEVBn0ydhvg3UxiMAQAT2c7US0t4DqVusBNKsngxgOE= jenkins@3b7c2e075db7"

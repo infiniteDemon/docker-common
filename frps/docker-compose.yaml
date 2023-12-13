@@ -1,0 +1,13 @@
+version: "3.1"
+services:
+  frps:
+    command: ["-c", "/etc/frp/frps.toml"]
+    container_name: frps
+    image: registry.cn-hangzhou.aliyuncs.com/infinitedemon/frps
+    restart: always
+    ports:
+      - "1070:1070"
+      - "1080:1080"
+      - "10443:10443"
+    volumes:
+      - ./conf.toml:/etc/frp/frps.toml
