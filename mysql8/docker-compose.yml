@@ -17,4 +17,4 @@ services:
       - mysql_secret
 secrets:
   mysql_secret:
-    file: ./mysql/secret/mysql
+    file: ./secret/mysql
