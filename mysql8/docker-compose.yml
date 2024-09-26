@@ -7,7 +7,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./mysql/conf:/etc/mysql
+      # - ./mysql/conf:/etc/mysql
       - ./mysql/logs:/var/log/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d/
       - /etc/localtime:/etc/localtime:ro
