@@ -4,6 +4,9 @@ services:
   db:
     image: registry.cn-shanghai.aliyuncs.com/csvw/mysql:8.4.2
     restart: always
+    volumes:
+      - ./data:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
     environment:
       MYSQL_ROOT_PASSWORD: test
 
