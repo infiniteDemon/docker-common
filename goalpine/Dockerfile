@@ -8,4 +8,4 @@ RUN apk add curl # buildkit
 RUN curl --version # buildkit
 ENV TZ=Asia/Shanghai
 # RUN addgroup -S qiongxiao && adduser -u 65530 -S noroot -G qiongxiao qiongxiao
-# USER 65530
+USER root
