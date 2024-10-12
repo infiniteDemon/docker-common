@@ -13,3 +13,23 @@ services:
       - /etc/localtime:/etc/localtime:ro
     #配置文件启动
     command: redis-server /usr/local/etc/redis/redis.conf
+    
+DbConfig:
+  Host: 192.168.200.8
+  Port: 13306
+  DbName: core
+  User: root
+  Password: "OqA_uMcPc2lm=ryfs_t#p%i+"
+  Charset: utf8mb4
+  MaxIdle: 10
+  MaxOpen: 100
+  LogMode: true
+  Loc: Asia/Shanghai
+  Debug: true
+  TablePrefix: "v1_"
+  MaxLifetime: 300
+Redis:
+  Host: 192.168.200.8:6379
+  Pass: "redis_SWeK3m"
+  Tls: false
+  Key: ""

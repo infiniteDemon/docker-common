@@ -2,7 +2,7 @@ version: "3.1"
 services:
   mysql:
     container_name: mysql
-    image: registry.cn-shanghai.aliyuncs.com/csvw/mysql:8.4.2
+    image: registry.cn-shanghai.aliyuncs.com/csvw/mysql:8.0.34
     restart: always
     ports:
       - 13306:3306
