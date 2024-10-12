@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine
 LABEL maintainer=infinitedemon@foxmail.com
 RUN RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories # buildkit
 RUN RUN apk --no-cache add tzdata &&     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &&     echo "Asia/Shanghai" > /etc/timezone # buildkit
