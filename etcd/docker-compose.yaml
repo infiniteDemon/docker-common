@@ -1,0 +1,15 @@
+services:
+  etcd-server:
+    image: quay.io/coreos/etcd:latest
+    container_name: etcd-server
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    command: /usr/local/bin/etcd --data-dir=/etcd-data --name node1 --initial-advertise-peer-urls http://172.29.4.12:2380 --listen-peer-urls http://0.0.0.0:2380 --advertise-client-urls http://172.29.4.12:2379 --listen-client-urls http://0.0.0.0:2379 --initial-cluster node1=http://172.29.4.12:2380
+    networks:
+      - etcd-network
+    volumes:
+      - ./data:/etcd-data
+
+networks:
+  etcd-network:

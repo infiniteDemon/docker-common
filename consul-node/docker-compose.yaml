@@ -1,0 +1,58 @@
+version: "3.8"
+services:
+  consul-server1:
+    image: consul:latest
+    container_name: consul-server1
+    ports:
+      - "8500:8500"         # HTTP API 和 Web UI
+      - "8301:8301"         # HTTP API 和 Web UI
+      - "8600:8600/udp"     # DNS 服务
+    command: agent -server -bootstrap-expect=3 -node=server1 -client=0.0.0.0 -bind=0.0.0.0
+    networks:
+      - consul-network
+    volumes:
+      - consul-server1-data:/consul/data
+      - /mnt/consul/config:/consul/config
+
+  consul-server2:
+    image: consul:latest
+    container_name: consul-server2
+    command: agent -server -node=server2 -join=consul-server1 -client=0.0.0.0 -bind=0.0.0.0
+    networks:
+      - consul-network
+    volumes:
+      - consul-server2-data:/consul/data
+      - /mnt/consul/config:/consul/config
+
+  consul-server3:
+    image: consul:latest
+    container_name: consul-server3
+    command: agent -server -node=server3 -join=consul-server1 -client=0.0.0.0 -bind=0.0.0.0
+    networks:
+      - consul-network
+    volumes:
+      - consul-server3-data:/consul/data
+      - /mnt/consul/config:/consul/config
+
+networks:
+  consul-network:
+
+volumes:
+  consul-server1-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/consul/data1
+  consul-server2-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/consul/data2
+  consul-server3-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/consul/data3
