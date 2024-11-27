@@ -1,15 +1,18 @@
 services:
-  etcd-server:
-    image: quay.io/coreos/etcd:latest
-    container_name: etcd-server
-    ports:
-      - "2379:2379"
-      - "2380:2380"
-    command: /usr/local/bin/etcd --data-dir=/etcd-data --name node1 --initial-advertise-peer-urls http://172.29.4.12:2380 --listen-peer-urls http://0.0.0.0:2380 --advertise-client-urls http://172.29.4.12:2379 --listen-client-urls http://0.0.0.0:2379 --initial-cluster node1=http://172.29.4.12:2380
-    networks:
-      - etcd-network
+  etcd:
+    image: bitnami/etcd:3.5.11
+    restart: always
     volumes:
-      - ./data:/etcd-data
+      - ./data:/bitnami/etcd
+    environment:
+      ETCD_ENABLE_V2: "true"
+      ALLOW_NONE_AUTHENTICATION: "yes"
+      ETCD_ADVERTISE_CLIENT_URLS: "http://etcd:2379"
+      ETCD_LISTEN_CLIENT_URLS: "http://0.0.0.0:2379"
+    ports:
+      - "2379:2379/tcp"
+    networks:
+      etcd-network:
 
 networks:
   etcd-network:
