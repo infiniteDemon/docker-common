@@ -1,6 +1,6 @@
 services:
   etcd:
-    image: bitnami/etcd:3.5.11
+    image: registry.cn-shanghai.aliyuncs.com/csvw/etcd:3.5.11
     restart: always
     volumes:
       - ./data:/bitnami/etcd
