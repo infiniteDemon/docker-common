@@ -18,3 +18,7 @@ services:
       - '$GITLAB_HOME/logs:/var/log/gitlab'
       - '$GITLAB_HOME/data:/var/opt/gitlab'
     shm_size: '256m'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'  # 最多使用 50% 的一个 CPU

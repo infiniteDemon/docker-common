@@ -1,0 +1,1 @@
+docker run --rm -e "KONG_DATABASE=postgres" -e "KONG_PG_HOST=pg01-vp.csvw88.com" -e "KONG_PG_PASSWORD=t)qH#+CKamLWS2ZY067)AZ(B=5GSHfm4" kong kong migrations bootstrap
